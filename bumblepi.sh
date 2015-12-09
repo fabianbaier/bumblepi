@@ -23,10 +23,15 @@
 	rsync -axv / /mnt
 	cp /boot/cmdline.txt /boot/cmdline.orig
 	cd /boot
+	rm cmdline.txt
 	wget https://raw.githubusercontent.com/fabianbaier/bumblepi/master/cmdline.txt
 	cd /mnt/etc
+	cp fstab fstab.orig
 	rm fstab
 	wget https://raw.githubusercontent.com/fabianbaier/bumblepi/master/fstab
+	sudo reboot
+	cd /home/pi/bumblepi
+	echo "`date -u` Error: reboot not possible" >> bumblepi.log
  }
 
 echo "`date -u` Bumble Pi started with IP `hostname -I`" >> bumblepi.log
