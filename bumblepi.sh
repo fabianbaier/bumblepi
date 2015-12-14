@@ -5,12 +5,12 @@
  	USB_DEVICE=`lsblk -r | grep sd | head -1 | awk '{print $1;}'`
  	if lsblk -r | grep sd | head -1 | awk '{print $1;}'; 
 	then
-	echo "`date -u` USB device found: $USB_DEVICE" >> bumblepi.log
+	echo "`date -u` USB device found: $USB_DEVICE" >> /var/log/bumblepi.log
 	make_usb
 
 	else
-	echo "`date -u` USB sd not existing" >> bumblepi.log
-	echo "`date -u` Bumble PI goes back to sleep" >> bumblepi.log
+	echo "`date -u` USB sd not existing" >> /var/log/bumblepi.log
+	echo "`date -u` Bumble PI goes back to sleep" >> /var/log/bumblepi.log
 	fi
     }
 
@@ -25,30 +25,30 @@
 	#cd /boot
 	cd /boot/firmware
 	cp cmdline.txt cmdline.orig
-	rm cmdline.txt
+	rm -f cmdline.txt
 	#wget https://raw.githubusercontent.com/fabianbaier/bumblepi/master/cmdline.txt
 	wget https://raw.githubusercontent.com/fabianbaier/bumblepi/master/cmdline-ubuntu.txt
 	mv cmdline-ubuntu.txt cmdline.txt
 	cd /mnt/etc
 	cp fstab fstab.orig
-	rm fstab
+	rm -f fstab
 	wget https://raw.githubusercontent.com/fabianbaier/bumblepi/master/fstab-ubuntu
 	mv fstab-ubuntu fstab
 	sudo reboot
 	#cd /home/pi/bumblepi
 	cd /home/ubuntu/bumblepi
-	echo "`date -u` Error: reboot not possible" >> bumblepi.log
+	echo "`date -u` Error: reboot not possible" >> /var/log/bumblepi.log
  }
 
-echo "`date -u` Bumble Pi started with IP `hostname -I`" >> bumblepi.log
+echo "`date -u` Bumble Pi started with IP `hostname -I`" >> /var/log/bumblepi.log
 
 #if grep root=/dev/sda1 /boot/cmdline.txt; 
 if grep root=/dev/sda1 /boot/firmware/cmdline.txt;
 then
-echo "`date -u` USB boot in cmdline.txt activated" >> bumblepi.log
-echo "`date -u` Bumble PI goes back to sleep" >> bumblepi.log
+echo "`date -u` USB boot in cmdline.txt activated" >> /var/log/bumblepi.log
+echo "`date -u` Bumble PI goes back to sleep" >> /var/log/bumblepi.log
 else
-echo "`date -u` USB boot not activated" >> bumblepi.log
+echo "`date -u` USB boot not activated" >> /var/log/bumblepi.log
 check_usb
 fi
 

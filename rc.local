@@ -17,10 +17,12 @@ if [ "$_IP" ]; then
   printf "My IP address is %s\n" "$_IP"
 fi
 
-cd /home/pi
-git clone https://github.com/fabianbaier/bumblepi.git
+cd /home/ubuntu
+sudo apt-get -y install git
+sudo rm -R bumblepi
+sudo git clone https://github.com/fabianbaier/bumblepi.git
 cd bumblepi
-sudo git pull
 sudo chmod 755 bumblepi.sh
 sudo ./bumblepi.sh
+
 exit 0
