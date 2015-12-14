@@ -34,6 +34,10 @@
 	rm -f fstab
 	wget https://raw.githubusercontent.com/fabianbaier/bumblepi/master/fstab-ubuntu
 	mv fstab-ubuntu fstab
+	sudo fallocate -l 1G /swapfile
+	sudo chmod 600 /swapfile
+	sudo mkswap /swapfile
+	echo "`date -u` Bumble Pi installed 1G swapfile" >> /var/log/bumblepi.log
 	sudo reboot
 	#cd /home/pi/bumblepi
 	cd /home/ubuntu/bumblepi

@@ -19,7 +19,9 @@ fi
 
 cd /home/ubuntu
 sudo apt-get -y install git
-sudo rm -R bumblepi
+sudo rm -R -f bumblepi
+#export GIT_SSL_NO_VERIFY=1
+sudo update-ca-certificates
 sudo git clone https://github.com/fabianbaier/bumblepi.git
 cd bumblepi
 sudo chmod 755 bumblepi.sh
