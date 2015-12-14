@@ -5,7 +5,10 @@ This tool autoinstalls the current raspbian on a usb drive
 #How to install?
 
 Add to the /etc/rc.local the following:
-cd /home/pi
+cd /home/ubuntu
+sudo apt-get update
+sudo apt-get -y install openssh-server
+sudo apt-get -y install git
 git clone https://github.com/fabianbaier/bumblepi.git
 cd bumblepi
 sudo git pull

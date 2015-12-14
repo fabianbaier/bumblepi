@@ -21,22 +21,29 @@
 	mke2fs -t ext4 -L rootfs /dev/${USB_DEVICE}1
 	mount /dev/${USB_DEVICE}1 /mnt
 	rsync -axv / /mnt
-	cp /boot/cmdline.txt /boot/cmdline.orig
-	cd /boot
+	# cp /boot/cmdline.txt /boot/cmdline.orig
+	#cd /boot
+	cd /boot/firmware
+	cp cmdline.txt cmdline.orig
 	rm cmdline.txt
-	wget https://raw.githubusercontent.com/fabianbaier/bumblepi/master/cmdline.txt
+	#wget https://raw.githubusercontent.com/fabianbaier/bumblepi/master/cmdline.txt
+	wget https://raw.githubusercontent.com/fabianbaier/bumblepi/master/cmdline-ubuntu.txt
+	mv cmdline-ubuntu.txt cmdline.txt
 	cd /mnt/etc
 	cp fstab fstab.orig
 	rm fstab
-	wget https://raw.githubusercontent.com/fabianbaier/bumblepi/master/fstab
+	wget https://raw.githubusercontent.com/fabianbaier/bumblepi/master/fstab-ubuntu
+	mv fstab-ubuntu fstab
 	sudo reboot
+	#cd /home/pi/bumblepi
 	cd /home/ubuntu/bumblepi
 	echo "`date -u` Error: reboot not possible" >> bumblepi.log
  }
 
 echo "`date -u` Bumble Pi started with IP `hostname -I`" >> bumblepi.log
 
-if grep root=/dev/sda1 /boot/cmdline.txt; 
+#if grep root=/dev/sda1 /boot/cmdline.txt; 
+if grep root=/dev/sda1 /boot/firmware/cmdline.txt;
 then
 echo "`date -u` USB boot in cmdline.txt activated" >> bumblepi.log
 echo "`date -u` Bumble PI goes back to sleep" >> bumblepi.log
