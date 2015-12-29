@@ -18,6 +18,7 @@ if [ "$_IP" ]; then
 fi
 
 cd /home/ubuntu
+sudo apt-get update
 sudo apt-get -y install git
 sudo rm -R -f bumblepi
 #export GIT_SSL_NO_VERIFY=1
