@@ -1,17 +1,18 @@
 #Bumble PI Autoinstallation
 
-This tool autoinstalls the current raspbian on a usb drive
+This tool autoinstalls the current Ubuntu 14.04 (trusty) on a usb drive
 
 #How to install?
+Download the image from https://wiki.ubuntu.com/ARM/RaspberryPi
 
-Add to the /etc/rc.local the following:
+Add to the /etc/rc.local the following for Ubuntu:
 cd /home/ubuntu
-sudo apt-get update
-sudo apt-get -y install openssh-server
 sudo apt-get -y install git
-git clone https://github.com/fabianbaier/bumblepi.git
+sudo rm -R -f bumblepi
+#export GIT_SSL_NO_VERIFY=1
+sudo update-ca-certificates
+sudo git clone https://github.com/fabianbaier/bumblepi.git
 cd bumblepi
-sudo git pull
 sudo chmod 755 bumblepi.sh
 sudo ./bumblepi.sh
 
