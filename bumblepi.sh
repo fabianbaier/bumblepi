@@ -41,7 +41,7 @@
 	echo "`date -u` Bumble Pi installed 1G swapfile" >> /var/log/bumblepi.log
 	sudo reboot
 	#cd /home/pi/bumblepi
-	cd /home/ubuntu/bumblepi
+	cd /hyfe/bumblepi
 	echo "`date -u` Error: reboot not possible" >> /var/log/bumblepi.log
  }
 
