@@ -24,7 +24,7 @@
 	cp /boot/cmdline.txt /boot/cmdline.orig
 	cd /boot
 	#cd /boot/firmware
-	#cp cmdline.txt cmdline.orig
+	cp cmdline.txt cmdline.orig
 	rm -f cmdline.txt
 	wget https://raw.githubusercontent.com/fabianbaier/bumblepi/master/cmdline.txt
 	#wget https://raw.githubusercontent.com/fabianbaier/bumblepi/master/cmdline-ubuntu.txt
@@ -34,7 +34,7 @@
 	rm -f fstab
 	#wget https://raw.githubusercontent.com/fabianbaier/bumblepi/master/fstab-ubuntu
 	wget https://raw.githubusercontent.com/fabianbaier/bumblepi/master/fstab
-	mv fstab-ubuntu fstab
+	#mv fstab-ubuntu fstab
 	sudo fallocate -l 1G /swapfile
 	sudo chmod 600 /swapfile
 	sudo mkswap /swapfile
